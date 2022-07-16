@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./script.js" defer></script>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+  </style>
+  <title>Calculator</title>
+</head>
+<body>
+  <div class="container">
+    <div class="calculator">
+      <div class="display">
+        <p id="calculated"></p>
+        <p id="input">_</p>
+      </div>
+      <div class="controls">
+        <div class="row">
+          <div class="buttons" id="C"><kbd>C</kbd></div>
+          <div class="buttons"><kbd>del</kbd></div>
+          <div class="buttons"><kbd>=</kbd></div>
+          <div class="buttons"><kbd>/</kbd></div>
+        </div>
+        <div class="row">
+          <div class="buttons"><kbd>7</kbd></div>
+          <div class="buttons"><kbd>8</kbd></div>
+          <div class="buttons"><kbd>9</kbd></div>
+          <div class="buttons"><kbd>*</kbd></div>
+        </div>
+        <div class="row">
+          <div class="buttons"><kbd>4</kbd></div>
+          <div class="buttons"><kbd>5</kbd></div>
+          <div class="buttons"><kbd>6</kbd></div>
+          <div class="buttons"><kbd>-</kbd></div>
+        </div>
+        <div class="row">
+          <div class="buttons"><kbd>1</kbd></div>
+          <div class="buttons"><kbd>2</kbd></div>
+          <div class="buttons"><kbd>3</kbd></div>
+          <div class="buttons"><kbd>+</kbd></div>
+        </div>
+        <div class="row">
+          <div class="buttons invisible"><kbd></kbd></div>
+          <div class="buttons"><kbd>0</kbd></div>
+          <div class="buttons"><kbd>.</kbd></div>
+          <div class="buttons invisible"><kbd></kbd></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <audio src="./sounds/click.mp3"></audio>
+</body>
+</html>
