@@ -1,5 +1,11 @@
 const displayCalculated = document.querySelector('#calculated');
 const displayInput = document.querySelector('#input');
+const sound = document.querySelector('audio');
+
+let calculatedNumber = '';
+let inputNumber = '';
+let operator1 = '';
+let operator2 = '';
 
 function operate(operator, number1, number2) {
   
@@ -30,7 +36,8 @@ function operate(operator, number1, number2) {
 
   if(operator === '/' && number2 == 0) {
     clearData();
-    return 'Division by 0 is bad!'
+    displayInput.textContent = 'Error: division by 0';
+    return '';
   }
 
 };
@@ -46,15 +53,14 @@ buttons.forEach(button => {
   })
 });
 
-let calculatedNumber = '';
-let inputNumber = '';
-let operator1 = '';
-let operator2 = '';
 
 function handleEvent(char) {
+  
+  sound.currentTime = 0;
+  sound.play();
 
   if(displayInput.textContent == "_") clearDisplay();
-  if(displayInput.textContent == 'Division by 0 is bad!') {
+  if(displayInput.textContent.includes('Error')) {
     clearDisplay();
     calculatedNumber = '';
   }
@@ -67,13 +73,10 @@ function handleEvent(char) {
   if(char.match(/[\/\*\-\+]/) && inputNumber) {
     operator2 = char;
     calculatedNumber = operate(operator1, calculatedNumber, inputNumber);
-    console.log(calculatedNumber);
     calculatedNumber = adjustLength(calculatedNumber);
     operator1 = operator2;
     inputNumber = '';
     operator2 = '';
-    console.log(calculatedNumber);
-    !calculatedNumber ? displayInput.textContent = 'Error: number is to big':
     displayCalculated.textContent = calculatedNumber + operator1;    
   }
 
@@ -88,8 +91,7 @@ function handleEvent(char) {
     calculatedNumber = adjustLength(calculatedNumber);
     inputNumber = '';
     operator1 = '';
-    !calculatedNumber ? displayInput.textContent = 'Error: number is to big':
-    displayInput.textContent = calculatedNumber; 
+    if(calculatedNumber) displayInput.textContent = calculatedNumber; 
   }
 
   if(char == '.' && !inputNumber.includes('.') && inputNumber) {
@@ -123,7 +125,7 @@ function clearDisplay() {
 
 function adjustLength(number) {
   number = number.toString();
-  while (number.length>14 && number.includes('.')) {
+  while (number.length>14 && number.includes('.') && !number.includes('e')) {
     number = number.slice(0, -1);
   }
 
@@ -131,9 +133,10 @@ function adjustLength(number) {
     number = number.slice(0, -1);
   };
 
-  if(number.length > 14) {
+  if(number.length > 14 || number.includes('e')) {
     clearData();
     clearDisplay();
+    displayInput.textContent = 'Error: number is to big'
     return '';
   }
 
